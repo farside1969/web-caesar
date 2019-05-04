@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, redirect, request
 from caesar import rotate_string
 
 app = Flask(__name__)
@@ -14,6 +14,5 @@ def encrypt():
     text = request.form['text']
     encrypted_text = rotate_string(text, rot)
     return '<h1>' + encrypted_text + '</h1>'
-
 
 app.run()
