@@ -6,13 +6,15 @@ app.config['DEBUG'] = True
 
 @app.route("/")
 def index():
-    return render_template("form.html")
+    empty_form = render_template("form.html")
+    return empty_form
 
 @app.route("/", methods=['POST'])
 def encrypt():
     rot = int(request.form['rot'])
     text = request.form['text']
-    encrypted_text = rotate_string(text, rot)
-    return '<h1>' + encrypted_text + '</h1>'
+    rotated_text = rotate_string(text, rot)
+    encrypted_text = rotated_text.format('<h1>', rotated_text, '</h1>')
+    return encrypted_text
 
 app.run()
